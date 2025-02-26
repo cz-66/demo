@@ -4,3 +4,41 @@
 - 1.springcloud的五大组件：
 - 2.微服务技术栈：
 - 3.
+
+
+feign:Fegin是一个声明式的web服务客户端，它使得编写web服务客户端变得更加容易。使用Fegin创建一个接口并对它进行注解。它具有可插拔的注解支持包括Feign注解与JAX-RS注解，
+Feign还支持可插拔的编码器与解码器，Spring Cloud 增加了对 Spring MVC的注解，Spring Web 默认使用了HttpMessageConverters, 
+Spring Cloud 集成 Ribbon 和 Eureka 提供的负载均衡的HTTP客户端 Feign。
+
+Nacos和eureka的共同点：
+  都支持服务注册和服务拉取
+  都支持服务提供者用心跳方式做健康检测
+Nacos和eureka的区别：
+  Nacos支持服务端主动向提供者进行检测：临时实例采用心跳模式，非临时实力采用主动检测模式
+  临时实力心跳不正常会被剔除，非临时实例不会
+  Nacos支持服务列表变更的消息推送模式，服务列表更新更加及时
+  Nacos集群默认采取AP模式，当集群中存在非临时实例时，采用CP模式；Eureka采用AP模式
+
+网关的作用：
+  身份验证和权限校验
+  服务路由、负载均衡
+  请求限流
+
+自定义过滤器：
+
+1.springcloud的组件有哪些?
+  注册中心：eureka，nacos等  负责注册与发现服务
+  负载均衡组件：ribbon       调用哪个服务呢，就是由负载均衡去决定
+  远程调用：OpenFeign       服务间的相互调用
+  网关组件：zuul，getWay    对外提供服务时需要网关
+  服务保护组件：Hystrix，Sentinel
+  服务配置管理组件：springcloudConfig，Nacos
+
+2.Nacos的服务注册表结构是怎样的？
+ 1）
+  
+
+
+
+
+
