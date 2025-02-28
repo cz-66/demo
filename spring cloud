@@ -5,12 +5,9 @@
 - 2.微服务技术栈：
 - 3.
 
+黑马springcloud的地址：https://blog.csdn.net/qq_60154877/article/details/129030832?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522c95b6d53ceef44c9919bc93ae3d60b40%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=c95b6d53ceef44c9919bc93ae3d60b40&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-1-129030832-null-null.142^v101^pc_search_result_base5&utm_term=%E9%BB%91%E9%A9%ACspringcloud%E9%9D%A2%E8%AF%95%E9%A2%98&spm=1018.2226.3001.4187
 
-feign:Fegin是一个声明式的web服务客户端，它使得编写web服务客户端变得更加容易。使用Fegin创建一个接口并对它进行注解。它具有可插拔的注解支持包括Feign注解与JAX-RS注解，
-Feign还支持可插拔的编码器与解码器，Spring Cloud 增加了对 Spring MVC的注解，Spring Web 默认使用了HttpMessageConverters, 
-Spring Cloud 集成 Ribbon 和 Eureka 提供的负载均衡的HTTP客户端 Feign。
-
-Nacos和eureka的共同点：
+一、Nacos和eureka的共同点：
   都支持服务注册和服务拉取
   都支持服务提供者用心跳方式做健康检测
 Nacos和eureka的区别：
@@ -19,12 +16,49 @@ Nacos和eureka的区别：
   Nacos支持服务列表变更的消息推送模式，服务列表更新更加及时
   Nacos集群默认采取AP模式，当集群中存在非临时实例时，采用CP模式；Eureka采用AP模式
 
-网关的作用：
+二、网关的作用：
   身份验证和权限校验
   服务路由、负载均衡
   请求限流
+getWay断言工厂：
+  predicate：判断请求是否正确
+自定义全局过滤器：
+  定义一个类去继承globalFilter，并且上面还要加@Component和@Order（-1），@Order是执行顺序，越小优先级越高，里面可以自定义处理逻辑
+getway过滤器链的执行顺序：当前路由的过滤器，defaultFilter，GlobalFilter
+网关的cors跨域配置：
+  在corsConfiguration里面设置，允许哪些网站请求，允许哪些访问方式请求(get,put,post等)
+三、feign:
+  Fegin是一个声明式的web服务客户端，它使得编写web服务客户端变得更加容易。使用Fegin创建一个接口并对它进行注解。它具有可插拔的注解支持包括Feign注解与JAX-RS注解，
+Feign还支持可插拔的编码器与解码器，Spring Cloud 增加了对 Spring MVC的注解，Spring Web 默认使用了HttpMessageConverters, 
+Spring Cloud 集成 Ribbon 和 Eureka 提供的负载均衡的HTTP客户端 Feign。
+四、docker
+  docker是一个快速交付应用、运行应用的技术
+介绍两个概念
+  镜像：docker会将应用程序所需要的依赖、环境、函数库、配置等东西打包在一起
+  容器：镜像中的应用程序运行的进程起来就是容器，而docker会给容器做隔离，对外不可见
+docker的架构：
+   是一个CS架构的程序，分为：
+     用户端：接收命令或远程请求，操作镜像或者容器
+     客户端：发送命令或者请求到docker服务端
+docker的镜像命令：
+     docker images: 查看镜像
+     docker rmi:    删除镜像
+     docker pull:   将服务拉取到镜像
+     docker push:   将镜像推送到服务
+     docker save:    保存镜像为一个压缩包
+     docker load:    加载压缩包为镜像
+docker run命令常见的参数：
+查看容器日志的命令：
+查看容器状态：docker ps 
 
-自定义过滤器：
+数据卷（volume）：
+  将容器与数据进行分离，解耦，方便操作容器内的数据，保证数据的安全
+数据卷的操作：
+  docker volume create：创建一个volume
+  docker volume ls：列出所有的volume
+  docker volume inspect:显示一个或者多个的volume
+  docker volume rm: 删除一个或者多个指定的volume
+  docker volume prune:删除未使用的volume
 
 1.springcloud的组件有哪些?
   注册中心：eureka，nacos等  负责注册与发现服务
